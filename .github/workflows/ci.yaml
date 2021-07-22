@@ -27,37 +27,37 @@ jobs:
       - name: Execute Black Linter
         run: poetry run black src --check
 
-    execute_import_sorter:
+  execute_import_sorter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout-repo
+        uses: actions/checkout@v2
+
+      - name: Install python 3.9.6
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9.6
+
+      - name: Install Poetry
+        uses: Gr1N/setup-poetry@v4
+
+      - name: Install Project Dependencies
+        run: poetry install
+
+      - name: Execute Import Sorter
+        run: poetry run isort src
+
+  execute_unit_tests:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout-repo
           uses: actions/checkout@v2
 
         - name: Install python 3.9.6
-          uses: actions/setup-python@v2
-          with:
-            python-version: 3.9.6
-
-        - name: Install Poetry
-          uses: Gr1N/setup-poetry@v4
+          uses: Gr1N/setup-poetry@v3
 
         - name: Install Project Dependencies
           run: poetry install
 
-        - name: Execute Import Sorter
-          run: poetry run isort src
-
-      execute_unit_tests:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout-repo
-            uses: actions/checkout@v2
-
-          - name: Install python 3.9.6
-            uses: Gr1N/setup-poetry@v3
-
-          - name: Install Project Dependencies
-            run: poetry install
-
-          - name: Execute Unit-tests
-            run: poetry run python3 -m unittest tests/test_calculator.py
+        - name: Execute Unit-tests
+          run: poetry run python3 -m unittest tests/test_calculator.py
