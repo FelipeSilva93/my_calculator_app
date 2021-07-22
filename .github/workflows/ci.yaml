@@ -61,5 +61,3 @@ jobs:
 
           - name: Execute Unit-tests
             poetry run python3 -m unittest tests/test_calculator.py
-
-        
