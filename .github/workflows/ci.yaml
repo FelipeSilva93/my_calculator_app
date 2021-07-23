@@ -69,16 +69,19 @@ jobs:
 
         
   auto_merge:
-    name: Merge master into release
+    Run Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-
-      - name: merge
-        uses: mtanzi/action-automerge@v1
-        id: merge
+      - name: Automatically Merge PR
+        uses: plm9606/automerge_actions@1.2.2
         with:
-          github_token: ${{ github.token }}
-          source: 'master'
-          target: 'release'
+          # The label name to automatically merge. Default is "automerge".
+          label-name:
+          # The number of reviewers to automatically merge. Default is 1.
+          reviewers-number:
+          # The merge method ("merge", "squash", "rebase"). Default is "merge"
+          merge-method:
+          # Let the bot delete the merged branch. true or false.
+          auto-delete:
+          # GitHub WebHook Secret Token
+          github-token: ${{ secrets.GITHUB_TOKEN }}
