@@ -78,9 +78,11 @@ jobs:
           label-name:
           # The number of reviewers to automatically merge. Default is 1.
           reviewers-number:
+            1
           # The merge method ("merge", "squash", "rebase"). Default is "merge"
           merge-method:
           # Let the bot delete the merged branch. true or false.
           auto-delete:
+            true
           # GitHub WebHook Secret Token
           github-token: ${{ secrets.GITHUB_TOKEN }}
