@@ -1,4 +1,4 @@
-name: automerge new
+name: Auto merge Integration Tests
 
 on:
   pull_request:
