@@ -3,7 +3,7 @@ name: "Automatic Merge"
 
 on:
   schedule:
-    - cron:  '0 * * * *'
+    - cron:  '/1 * * * *'
 
 jobs:
   merge:
