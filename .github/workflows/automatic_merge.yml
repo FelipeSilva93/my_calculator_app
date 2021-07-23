@@ -1,4 +1,4 @@
-name: "Automatic Merge"
+name: Automatic Merge
 
 on:
   schedule:
