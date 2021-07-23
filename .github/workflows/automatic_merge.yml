@@ -1,4 +1,3 @@
-# .github/workflows/automatic-merge.yml
 name: "Automatic Merge"
 
 on:
