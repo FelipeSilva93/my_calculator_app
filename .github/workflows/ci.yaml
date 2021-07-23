@@ -69,7 +69,6 @@ jobs:
 
         
   auto_merge:
-    Run Actions:
     runs-on: ubuntu-latest
     steps:
       - name: Automatically Merge PR
