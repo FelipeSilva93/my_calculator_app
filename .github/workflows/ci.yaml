@@ -66,3 +66,15 @@ jobs:
 
        - name: Execute Unit-tests
          run: poetry run python3 -m unittest tests/test_calculator.py
+
+  auto_merge:
+    - name: Merge Pull Request
+      uses: actions/github-script@0.2.0
+      with:
+        scripts: |
+           github.pullRequests.merge ({
+            owner: context.payload.repository.owner.login,
+            repo: context.payload.repository.owner.name,
+            pull_number: context.payload.pull_request.number
+            })
+            github-token: ${{github.token}}
