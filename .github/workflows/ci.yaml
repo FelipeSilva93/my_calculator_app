@@ -48,38 +48,39 @@ jobs:
         run: poetry run isort src
 
   execute_unit_tests:
-     runs-on: ubuntu-latest
-     steps:
-       - name: Checkout-repo
-         uses: actions/checkout@v2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout-repo
+        uses: actions/checkout@v2
          
-       - name: Install python 3.9.6
-         uses: actions/setup-python@v2
-         with:
+      - name: Install python 3.9.6
+        uses: actions/setup-python@v2
+        with:
           python-version: 3.9.6
 
-       - name: Install Poetry
-         uses: Gr1N/setup-poetry@v4
+      - name: Install Poetry
+        uses: Gr1N/setup-poetry@v4
 
-       - name: Install Project Dependencies
-         run: poetry install
+      - name: Install Project Dependencies
+        run: poetry install
 
-       - name: Execute Unit-tests
-         run: poetry run python3 -m unittest tests/test_calculator.py
+      - name: Execute Unit-tests
+        run: poetry run python3 -m unittest tests/test_calculator.py
 
+        
   auto_merge:
-     runs-on: ubuntu-latest
-     - name: Merge Pull Request
-       needs: build
-       if: github.base_ref == 'master'
-       steps:
-         - name: Merge
-           uses: actions/github-script@0.2.0
-           with:
-             scripts: |
-               github.pullRequests.merge ({
-               owner: context.payload.repository.owner.login,
-               repo: context.payload.repository.owner.name,
-               pull_number: context.payload.pull_request.number
-               })
-               github-token: ${{github.token}}
+    runs-on: ubuntu-latest
+    - name: Merge Pull Request
+      needs: build
+      if: github.base_ref == 'master'
+      steps:
+        - name: Merge
+          uses: actions/github-script@0.2.0
+          with:
+            scripts: |
+              github.pullRequests.merge ({
+              owner: context.payload.repository.owner.login,
+              repo: context.payload.repository.owner.name,
+              pull_number: context.payload.pull_request.number
+              })
+              github-token: ${{github.token}}
